@@ -38,7 +38,7 @@ public class Cargos extends BaseController {
                 .first();
 
         Cargo novoCargoNoBanco = Cargo.find("nome = :nome")
-                .setParameter("nome", cargoVO.nome)
+                .setParameter("nome", cargoVO.novoNome)
                 .first();
 
         if(cargoNoBanco == null) {
