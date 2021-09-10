@@ -1,0 +1,31 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+POST            /cargos/adicionar                       Cargos.adicionarCargo
+POST            /cargos/listar                          Cargos.listarCargos
+POST            /cargos/editar                          Cargos.editarCargo
+
+POST            /perfis/adicionar                       Perfis.adicionarPerfil
+POST            /perfis/listar                          Perfis.listarPerfis
+POST            /perfis/editar                          Perfis.editarPerfil
+POST            /perfis/deletar                         Perfis.deletarPerfil
+
+POST            /usuarios/adicionar                     Usuarios.adicionarUsuario
+POST            /usuarios/listar                        Usuarios.listarUsuarios
+POST            /usuarios/editar                        Usuarios.editarUsuario
+
+
+# ROTA PARA OS ARQUIVOS ESTÁTICOS
+# IMPORTANTE!!! MANTER SEMPRE O BLOCO ABAIXO NO FINAL DO ARQUIVO!
+
+GET     /scripts/                               staticDir:public/scripts
+GET	    /styles/                                staticDir:public/styles
+GET	    /images/                                staticDir:public/images
+GET	    /fonts/	                                staticDir:public/fonts
+GET	    /manual/                                staticDir:public/manual
+GET	    /views/	                                staticDir:public/views
+GET     /tmp/                                   staticDir:tmp
+GET     /public/                                staticDir:public
+GET     /                                       staticDir:public/views
+

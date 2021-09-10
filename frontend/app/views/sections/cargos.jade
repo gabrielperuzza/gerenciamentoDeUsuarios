@@ -1,0 +1,51 @@
+h3.texto-titulo.texto-centralizado.espacamento-baixo CARGOS
+
+section.cardSombreado
+    h2.texto-titulo.texto-centralizado.espacamento-baixo ADICIONAR CARGO
+    form.formPadrao(name='formAdicionarCargo')
+        div
+            label(for='nomeCargo') Nome:
+            input(name='nomeCargo', ng-model='nomeCargo', type='text', required)
+        div.observacao-input(ng-if='formAdicionarCargo.nomeCargo.$touched && formAdicionarCargo.nomeCargo.$error.required')
+            p O campo não pode estar em branco
+        div.espacamento-baixo
+            button(ng-click='adicionarCargo()', role='button', ng-disabled='formAdicionarCargo.$invalid') ADICIONAR
+
+section.cardSombreado
+    h2.texto-titulo.texto-centralizado.espacamento-baixo LISTAGEM DE CARGOS
+    div.cardRepeat(ng-repeat='cargo in listaCargos')
+        div.nome
+            p {{cargo.nome}}
+    div(ng-if='listaCargos.length === 0 && cargosBuscados')
+        p.texto-centralizado Não existem cargos
+
+section.cardSombreado
+    h2.texto-titulo.texto-centralizado.espacamento-baixo EDITAR CARGO
+    div
+        form.caixaDeBusca(name='formTodosCargos')
+            input(list='filtroCargos', value='', placeholder='Clique ou digite para buscar', ng-model='cargoSelecionado', ng-disabled='listaCargos.length === 0', required='true', name='cargoSelecionado')
+            datalist#filtroCargos
+                option(ng-repeat='cargo in listaCargos', value='{{cargo.nome}}')
+    div.observacao-input(ng-if='listaCargos.length === 0 && cargosBuscados')
+        p.texto-centralizado Não existem cargos
+    div.observacao-input(ng-if='formTodosCargos.cargoSelecionado.$touched && formTodosCargos.cargoSelecionado.$error.required')
+        p.texto-centralizado O campo não pode estar em branco
+    
+    form.formPadrao(name='formEditarCargo')
+        div
+            label(for='novoNomeCargo') Novo nome:
+            input(name='novoNomeCargo', ng-model='novoNomeCargo', type='text', required)
+        div.observacao-input(ng-if='formEditarCargo.novoNomeCargo.$touched && formEditarCargo.novoNomeCargo.$error.required')
+            p O campo não pode estar em branco
+        div.espacamento-baixo
+            button(ng-click='editarCargo()', role='button', ng-disabled='formEditarCargo.$invalid || formTodosCargos.$invalid') EDITAR
+
+#modalCargos.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h3#exampleModalLabel.modal-title Resultado
+                .modal-body
+                    p {{resultado}}
+                .modal-footer
+                    button.btn.btn-danger(type='button', data-dismiss='modal') Fechar

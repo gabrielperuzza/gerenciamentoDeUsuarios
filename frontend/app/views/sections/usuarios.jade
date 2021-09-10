@@ -1,0 +1,113 @@
+h3.texto-titulo.texto-centralizado.espacamento-baixo USUÁRIOS
+
+section.cardSombreado
+    h3.texto-titulo.texto-centralizado.espacamento-baixo ADICIONAR USUÁRIO
+    form.formPadrao(name='formAdicionarUsuario')
+        div
+            label(for='nomeUsuario') Nome:
+            input(name='nomeUsuario', ng-model='nomeUsuario', type='text', required)
+            div.observacao-input(ng-if='formAdicionarUsuario.nomeUsuario.$touched && formAdicionarUsuario.nomeUsuario.$error.required')
+                p O campo não pode estar em branco
+        div
+            label(for='cpfUsuario') CPF:
+            input(name='cpfUsuario', ng-model='cpfUsuario', type='text', ui-br-cpf-mask, required)
+            div.observacao-input(ng-if='formAdicionarUsuario.cpfUsuario.$invalid && !formAdicionarUsuario.cpfUsuario.$error.required')
+                p Digite um CPF válido
+            div.observacao-input(ng-if='formAdicionarUsuario.cpfUsuario.$touched && formAdicionarUsuario.cpfUsuario.$error.required')
+                p O campo não pode estar em branco
+        div
+            label(for='dataNascimentoUsuario') Data de Nascimento:
+            input(name='dataNascimentoUsuario', ng-model='dataNascimentoUsuario', type='date')
+        div
+            label(for='selectSexo') Sexo:
+            select(name='selectSexo', ng-model='sexoUsuario')
+                option(ng-repeat='sexo in sexos', value='{{sexo}}') {{sexo}}
+        div
+            label(for='formTodosCargos') Cargo:
+            form.caixaDeBusca(name='formTodosCargos')
+                input(list='filtroCargos', value='', placeholder='Clique ou digite para buscar', ng-model='cargoUsuario', ng-disabled='listaCargos.length === 0', required='true', name='cargoUsuario')
+                datalist#filtroCargos
+                    option(ng-repeat='cargo in listaCargos', value='{{cargo.nome}}')
+            div.observacao-input(ng-if='listaCargos.length === 0 && cargosBuscados')
+                p.texto-centralizado Não existem cargos
+            div.observacao-input(ng-if='formAdicionarUsuario.cargoUsuario.$touched && formAdicionarUsuario.cargoUsuario.$error.required')
+                p O campo não pode estar em branco
+        div.texto-centralizado
+            label Perfis:
+            div(ng-repeat='perfil in listaPerfisOrdenada')
+                input(type='checkbox', name='inputCheckbox', ng-click='addPerfilUsuario(perfil, "adicionar")')
+                label(for='inputCheckbox') {{perfil.nome}}
+        div.espacamento-baixo.texto-centralizado
+            button.buttonPadrao(ng-click='adicionarUsuario()', role='button', ng-disabled='formAdicionarUsuario.$invalid') ADICIONAR
+        
+section.cardSombreado
+    h2.texto-titulo.texto-centralizado.espacamento-baixo LISTAGEM DE USUÁRIOS
+    div.cardRepeat(ng-repeat='usuario in listaUsuarios')
+        div.nome
+            h2.texto-titulo.texto-centralizado.espacamento-baixo USUÁRIO {{usuario.id}}
+            span.glyphicon.glyphicon-pencil.hover(uib-tooltip='Editar', ng-click='escolherEditarUsuario(usuario.id)')
+            h3.texto-titulo.texto-centralizado.espacamento-baixo INFORMAÇÕES
+            p Nome: {{usuario.nome}}
+            p CPF: {{usuario.cpf}}
+            p Data de nascimento: {{usuario.dataNascimento}}
+            p Sexo: {{usuario.sexo}}
+            p Cargo: {{usuario.cargo.nome}}
+            p Data de cadastro: {{usuario.dataCadastro}}
+            h3.texto-titulo.texto-centralizado.espacamento-baixo PERFIS
+            p(ng-repeat='perfil in usuario.perfis') {{perfil.nome}}
+    div(ng-if='listaUsuarios.length === 0 && usuariosBuscados')
+        p.texto-centralizado Não existem usuários
+
+section.cardSombreado
+    h3.texto-titulo.texto-centralizado.espacamento-baixo EDITAR USUÁRIO
+    div(ng-show='!usuarioEscolhido')
+        p.texto-centralizado Escolha um usuário na listagem
+    div(ng-show='usuarioEscolhido')
+        h4.texto-titulo.texto-centralizado.espacamento-baixo USUÁRIO ESCOLHIDO: {{usuarioCompleto.id}}
+        form.formPadrao(name='formEditarUsuario')
+            div
+                label(for='novoNomeUsuario') Nome:
+                input(name='novoNomeUsuario', ng-model='novoNomeUsuario', type='text', required)
+                div.observacao-input(ng-if='formEditarUsuario.novoNomeUsuario.$touched && formEditarUsuario.novoNomeUsuario.$error.required')
+                    p O campo não pode estar em branco
+            div
+                label(for='novoCpfUsuario') CPF:
+                input(name='novoCpfUsuario', ng-model='novoCpfUsuario', type='text', ui-br-cpf-mask, required)
+                div.observacao-input(ng-if='formEditarUsuario.novoCpfUsuario.$invalid && !formEditarUsuario.novoCpfUsuario.$error.required')
+                    p Digite um CPF válido
+                div.observacao-input(ng-if='formEditarUsuario.novoCpfUsuario.$touched && formEditarUsuario.novoCpfUsuario.$error.required')
+                    p O campo não pode estar em branco
+            div
+                label(for='novoDataNascimentoUsuario') Data de Nascimento:
+                input(name='novoDataNascimentoUsuario', ng-model='novoDataNascimentoUsuario', type='date')
+            div
+                label(for='novoSelectSexo') Sexo:
+                select(name='novoSelectSexo', ng-model='novoSexoUsuario')
+                    option(ng-repeat='sexo in sexos', value='{{sexo}}') {{sexo}}
+            div
+                label(for='novoFormTodosCargos') Cargo:
+                form.caixaDeBusca(name='novoFormTodosCargos')
+                    input(list='filtroCargos', value='', placeholder='Clique ou digite para buscar', ng-model='novoCargoUsuario', ng-disabled='listaCargos.length === 0', required='true', name='novoCargoUsuario')
+                    datalist#filtroCargos
+                        option(ng-repeat='cargo in listaCargos', value='{{cargo.nome}}')
+                div.observacao-input(ng-if='listaCargos.length === 0 && cargosBuscados')
+                    p.texto-centralizado Não existem cargos
+                div.observacao-input(ng-if='formEditarUsuario.novoCargoUsuario.$touched && formEditarUsuario.novoCargoUsuario.$error.required')
+                    p O campo não pode estar em branco
+            div.texto-centralizado
+                label Perfis:
+                div(ng-repeat='perfil in listaPerfisOrdenada')
+                    input(type='checkbox', name='inputCheckbox', ng-click='addPerfilUsuario(perfil, "editar")')
+                    label(for='inputCheckbox') {{perfil.nome}}
+            div.espacamento-baixo.texto-centralizado
+                button.buttonPadrao(ng-click='editarUsuario()', role='button', ng-disabled='formEditarUsuario.$invalid') EDITAR
+
+#modalUsuarios.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h3#exampleModalLabel.modal-title Resultado
+                .modal-body
+                    p {{resultado}}
+                .modal-footer
+                    button.btn.btn-danger(type='button', data-dismiss='modal') Fechar

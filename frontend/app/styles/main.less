@@ -1,0 +1,357 @@
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.espacamento-direita {
+  margin-right: 10px;
+}
+
+.espacamento-baixo {
+  margin-bottom: 1em;
+}
+
+.texto-centralizado {
+  text-align: center !important;
+}
+
+.texto-titulo {
+  font-variant: all-small-caps;
+  font-weight: bold;
+} 
+
+header {
+  overflow: hidden;
+  background-color: @cinza-escuro;
+  width: 100%;
+  padding: 5px;
+  min-height: 10vh !important;
+  height: 50px;
+}
+
+header a {
+  float: left;
+  color: @branco;
+  text-align: center;
+  padding: 12px;
+  line-height: 25px;
+  border-radius: 2px;
+}
+
+header a.logo img {
+  width: 20px;
+  height: 20px;
+}
+
+header a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: @branco;
+}
+
+header a:focus {
+  color: @branco;
+  text-decoration: none;
+}
+
+footer {
+  overflow: hidden;
+  background-color: @cinza-escuro;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  color: @branco;
+  min-height: 15vh !important;
+  height: 75px;
+}
+
+.conteudo-header {
+  float: right;
+}
+
+.informacaoFooter {
+  align-items: center;
+  display: inline-flex;
+}
+
+.informacaoFooter div {
+  padding: 10px;
+}
+
+.container {
+  min-height: 75vh !important;
+}
+
+button:focus {
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+form.caixaDeBusca {
+  margin: auto;
+  width: 30vw;
+  height: 8vh !important;
+}
+
+form.caixaDeBusca input {
+  padding: 10px;
+  font-size: 15px;
+  width: 80%;
+  height: 100%;
+}
+
+input {
+  border: 1px solid @cinza;
+  background: @branco;
+}
+
+input:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  border: 1px solid @preto;
+}
+
+.filtroAvancado {
+  background-color: @cinza-claro;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  text-align: center;
+  border: 1px solid @cinza;
+  transition: all linear 0.5s;
+}
+
+.ng-hide {
+  opacity: 0;
+}
+
+.filtroAvancado div {
+  display: flex;
+  margin: auto;
+  padding: 1vh;
+}
+
+.justificativa {
+  margin: auto;
+}
+
+.justificativa p {
+  text-align: justify;
+}
+
+form.formPadrao {
+  margin: auto;
+  text-align: center;
+  width: 40vw;
+}
+
+form.formPadrao label {
+  width: 32%;
+  height: 100%;
+  font-size: 15px;
+}
+
+form.formPadrao input {
+  padding: 10px;
+  margin: 10px;
+  font-size: 15px;
+  width: 60%;
+  height: 100%;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+form.formPadrao select {
+  padding: 10px;
+  margin: 10px;
+  font-size: 15px;
+  width: 60%;
+  height: 100%;
+  border: 1px solid @cinza;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+form.formPadrao select:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  border-bottom: 1px solid @preto;
+}
+
+form.formPadrao button {
+  background: @cinza-escuro;
+  color: @branco;
+  font-size: 12px;
+  border: 1px solid @cinza;
+  width: 10vw;
+  height: 5vh;
+  margin-top: 2vh;
+  border-radius: 5px;
+}
+
+form.formPadrao button:hover {
+  cursor: pointer;
+}
+
+.cardSombreado {
+  margin: auto;
+  padding-bottom: 5px;
+  border: 1px solid @cinza;
+  border-radius: 5px;
+  box-shadow: 5px 10px 8px @cinza;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  overflow: hidden;
+}
+
+.inline {
+  display: inline;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+tr.amostras:hover {
+  cursor: pointer;
+  outline: 1px solid @cinza;
+}
+
+tr.amostras:active {
+  background: @branco;
+}
+
+.divisaoForm {
+  padding-bottom: 5px;
+  border-top: 1px solid @cinza;
+  margin-top: 5vh;
+}
+
+tr.amostras {
+  background: @cinza-claro;
+}
+
+.detalhes-amostra button{
+  background: @cinza-escuro;
+  color: white;
+  font-size: 12px;
+  border: 1px solid @cinza;
+  width: 5vh;
+  height: 5vh;
+}
+
+.detalhes-amostra {
+  outline: 1px solid @cinza-claro;
+}
+
+.float-direita {
+  float: right;
+}
+
+button:disabled {
+  background-color: @cinza !important;
+}
+
+button:disabled:hover {
+  cursor: auto !important;
+}
+
+.observacao-input p {
+  color: @vermelho;
+  font-size: 11px;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.observacao-listagem p {
+  color: @vermelho;
+  font-size: 11px;
+  text-align: center;
+}
+
+.loading {
+  position: fixed;
+  left: 50%;
+  top: 15%;
+  margin-left: -25px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  transition: all linear 0.3s;
+}
+
+.loading.ng-hide {
+  opacity: 0;
+  top: 0%;
+}
+
+.cardRepeat {
+  margin: auto;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.cardRepeat button {
+  float: left;
+  background: @cinza-escuro;
+  color: white;
+  font-size: 12px;
+  border: 1px solid @cinza;
+  width: 10%;
+  height: 100%;
+  margin-right: 10%;
+  height: 8vh !important;
+}
+
+.cardRepeat div.nome {
+  padding: 10px;
+  font-size: 15px;
+  height: 100%;
+  width: 80%;
+  border: 1px solid @cinza;
+  text-align: center;
+  margin-left: 10%;
+}
+
+
+.cardRepeat div.nome input {
+  text-align: center;
+  border: none;
+}
+
+.sectionCard {
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.sectionCard h4 {
+  font-weight: bold;
+}
+
+.buttonPadrao {
+  background: @cinza-escuro;
+  color: @branco;
+  font-size: 12px;
+  border: 1px solid @cinza;
+  width: 10vw;
+  height: 5vh;
+  margin-top: 2vh;
+  border-radius: 5px;
+}
+
+.buttonPadrao:hover {
+  cursor: pointer;
+}
+
+.hover:hover {
+  cursor: pointer;
+}
+
+@branco: #ffffff;
+@cinza-claro: #eeeeee;
+@cinza: #d3d3d3;
+@cinza-escuro: #353839;
+@preto: #000000;
+@vermelho: #ff0000;

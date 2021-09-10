@@ -1,0 +1,54 @@
+h3.texto-titulo.texto-centralizado.espacamento-baixo PERFIS
+
+section.cardSombreado
+    h2.texto-titulo.texto-centralizado.espacamento-baixo ADICIONAR PERFIL
+    form.formPadrao(name='formAdicionarPerfil')
+        div
+            label(for='nomePerfil') Nome:
+            input(name='nomePerfil', ng-model='nomePerfil', type='text', required)
+        div.observacao-input(ng-if='formAdicionarPerfil.nomePerfil.$touched && formAdicionarPerfil.nomePerfil.$error.required')
+            p O campo não pode estar em branco
+        div.espacamento-baixo
+            button(ng-click='adicionarPerfil()', role='button', ng-disabled='formAdicionarPerfil.$invalid') ADICIONAR
+
+section.cardSombreado
+    h2.texto-titulo.texto-centralizado.espacamento-baixo LISTAGEM DE PERFIS (EM ORDEM ALFABÉTICA)
+    div.cardRepeat(ng-repeat='perfil in listaPerfisOrdenada')
+        div.nome
+            p {{perfil.nome}}
+        button(ng-click='deletarPerfil(perfil.id)', uib-tooltip='Deletar')
+            span.glyphicon.glyphicon-remove
+    div(ng-if='listaPerfisOrdenada.length === 0 && perfisBuscados')
+        p.texto-centralizado Não existem perfis
+        
+
+section.cardSombreado
+    h2.texto-titulo.texto-centralizado.espacamento-baixo EDITAR PERFIL
+    div
+        form.caixaDeBusca(name='formTodosPerfis')
+            input(list='filtroPerfis', value='', placeholder='Clique ou digite para buscar', ng-model='perfilSelecionado', ng-disabled='listaPerfisOrdenada.length === 0', required='true', name='perfilSelecionado')
+            datalist#filtroPerfis
+                option(ng-repeat='perfil in listaPerfisOrdenada', value='{{perfil.nome}}')
+    div.observacao-input(ng-if='listaPerfisOrdenada.length === 0 && perfisBuscados')
+        p.texto-centralizado Não existem perfis
+    div.observacao-input(ng-if='formTodosPerfis.perfilSelecionado.$touched && formTodosPerfis.perfilSelecionado.$error.required')
+        p.texto-centralizado O campo não pode estar em branco
+    form.formPadrao(name='formEditarPerfil')
+        div
+            label(for='novoNomePerfil') Novo nome:
+            input(name='novoNomePerfil', ng-model='novoNomePerfil', type='text', required)
+        div.observacao-input(ng-if='formEditarPerfil.novoNomePerfil.$touched && formEditarPerfil.novoNomePerfil.$error.required')
+            p O campo não pode estar em branco
+        div.espacamento-baixo
+            button(ng-click='editarPerfil()', role='button', ng-disabled='formEditarPerfil.$invalid || formTodosPerfis.$invalid') EDITAR
+
+
+#modalPerfis.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h3#exampleModalLabel.modal-title Resultado
+                .modal-body
+                    p {{resultado}}
+                .modal-footer
+                    button.btn.btn-danger(type='button', data-dismiss='modal') Fechar
